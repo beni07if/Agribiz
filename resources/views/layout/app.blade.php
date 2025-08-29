@@ -9,8 +9,10 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
+    {{--
     <link href="{{ asset('template/Passion/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('template/Passion/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('template/Passion/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon"> --}}
+    <link rel="icon" href="{!! asset('template/Passion/assets/img/Logo_Agribiz_Shape.png') !!}" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">

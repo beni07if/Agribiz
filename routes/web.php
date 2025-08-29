@@ -152,12 +152,16 @@ Route::get('/sra-feature', [WebViewController::class, 'sraFeature'])->name('sraF
 // Route::resources([
 //     'term-and-conditions' => TermConditionController::class,
 // ]);
-// Route::resources([
-//     'landing-page' => LandingPageController::class,
-// ]);
+Route::resources([
+    'landing-page' => LandingPageController::class,
+]);
+Route::resources([
+    'feature' => FeatureController::class,
+]);
 // Route::resources([
 //     'messages' => MessageController::class,
 // ]);
+
 // Route::post('/toggle-maintenance', [CorporateProfileController::class, 'toggleMaintenance']);
 // Route::get('/maintenance-mode', [CorporateProfileController::class, 'showMaintenanceMode'])->name('maintenance.mode');
 // Route::get('/test', [CorporateProfileController::class, 'showIndex'])->name('showIndex');

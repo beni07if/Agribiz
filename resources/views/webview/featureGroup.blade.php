@@ -58,8 +58,8 @@
 
                     <div class="col-lg-6">
                         <div class="image-wrapper">
-                            <img src="{{ ('template/Passion/assets/img/about/about-square-8.webp') }}" alt="About Us"
-                                class="img-fluid main-image">
+                            <img src="{{ ('template/Passion/assets/img/illustration/company-hierarchy2.jpg') }}"
+                                alt="About Us" class="img-fluid main-image">
                             <div class="floating-card">
                                 <div class="card-content">
                                     <i class="bi bi-gem"></i>

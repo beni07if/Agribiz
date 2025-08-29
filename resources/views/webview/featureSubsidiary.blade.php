@@ -47,7 +47,7 @@
 
                     <div class="col-lg-6">
                         <div class="image-wrapper">
-                            <img src="{{ ('template/Passion/assets/img/about/about-square-8.webp') }}" alt="About Us"
+                            <img src="{{ ('template/Passion/assets/img/illustration/company.jpg') }}" alt="About Us"
                                 class="img-fluid main-image">
                         </div>
                     </div>

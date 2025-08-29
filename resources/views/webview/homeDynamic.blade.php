@@ -137,8 +137,8 @@
 
                     <div class="col-lg-6">
                         <div class="image-wrapper">
-                            <img src="{{ ('template/Passion/assets/img/about/about-square-8.webp') }}" alt="About Us"
-                                class="img-fluid main-image">
+                            <img src="{{ ('template/Passion/assets/img/illustration/company-hierarchy.jpg') }}"
+                                alt="About Us" class="img-fluid main-image">
                             <div class="floating-card">
                                 <div class="card-content">
                                     <i class="bi bi-gem"></i>
@@ -198,31 +198,31 @@
                     <div class="col-12">
                         <div class="services-slider swiper init-swiper">
                             <script type="application/json" class="swiper-config">
-                                {
-                                    "slidesPerView": 3,
-                                    "spaceBetween": 20,
-                                    "loop": true,
-                                    "speed": 600,
-                                    "autoplay": {
-                                    "delay": 5000
-                                    },
-                                    "navigation": {
-                                    "nextEl": ".swiper-nav-next",
-                                    "prevEl": ".swiper-nav-prev"
-                                    },
-                                    "breakpoints": {
-                                    "320": {
-                                        "slidesPerView": 1
-                                    },
-                                    "768": {
-                                        "slidesPerView": 2
-                                    },
-                                    "992": {
-                                        "slidesPerView": 3
-                                    }
-                                    }
-                                }
-                                        </script>
+                                                    {
+                                                        "slidesPerView": 3,
+                                                        "spaceBetween": 20,
+                                                        "loop": true,
+                                                        "speed": 600,
+                                                        "autoplay": {
+                                                        "delay": 5000
+                                                        },
+                                                        "navigation": {
+                                                        "nextEl": ".swiper-nav-next",
+                                                        "prevEl": ".swiper-nav-prev"
+                                                        },
+                                                        "breakpoints": {
+                                                        "320": {
+                                                            "slidesPerView": 1
+                                                        },
+                                                        "768": {
+                                                            "slidesPerView": 2
+                                                        },
+                                                        "992": {
+                                                            "slidesPerView": 3
+                                                        }
+                                                        }
+                                                    }
+                                                            </script>
                             <div class="swiper-wrapper">
 
                                 <div class="swiper-slide">
@@ -324,7 +324,7 @@
         </section><!-- /Featured Services Section -->
 
         <!-- How We Work Section -->
-        <section id="how-we-work" class="how-we-work section">
+        <section id="how-we-work" class="how-we-work section" hidden>
 
             <!-- Section Title -->
             <div class="container section-title">
