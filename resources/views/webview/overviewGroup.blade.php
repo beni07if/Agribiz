@@ -16,9 +16,7 @@
                         <div class="service-content">
                             <div class="service-header">
                                 <h2>Group Summary</h2>
-                                <p class="service-intro">Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non
-                                    nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                                <p class="service-intro"></p>
                             </div>
                         </div>
 
