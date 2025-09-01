@@ -167,7 +167,7 @@ class FeatureController extends Controller
         ]);
 
         // Redirect with success message
-        return redirect()->route('landing-page.index')->with('success', 'Landing page updated successfully.');
+        return redirect()->route('feature.index')->with('success', 'Landing page updated successfully.');
     }
 
     /**
@@ -175,6 +175,41 @@ class FeatureController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Ambil data feature berdasarkan id
+        $feature = Feature::findOrFail($id);
+
+        // Daftar field gambar yang harus dicek
+        $imageFields = [
+            'feature_group_img',
+            'feature_company_img',
+            'feature_shareholder_img',
+            'feature_sra_img',
+        ];
+
+        foreach ($imageFields as $field) {
+            if (!empty($feature->$field)) {
+                $imagePath = 'img/' . $feature->$field;
+
+                // Log untuk debugging
+                Log::info("Attempting to delete image at: {$imagePath}");
+
+                if (Storage::disk('public')->exists($imagePath)) {
+                    if (Storage::disk('public')->delete($imagePath)) {
+                        Log::info("Successfully deleted image: {$imagePath}");
+                    } else {
+                        Log::error("Failed to delete image: {$imagePath}");
+                    }
+                } else {
+                    Log::warning("Image does not exist: {$imagePath}");
+                }
+            }
+        }
+
+        // Hapus record feature
+        $feature->delete();
+
+        return redirect()->route('feature.index')
+            ->with('success', 'Feature and associated images deleted successfully.');
     }
+
 }
