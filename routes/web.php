@@ -62,10 +62,10 @@ Route::middleware('auth')->group(function () {
     Route::match(['get', 'post'], '/corporate-profile-group2-show', [PrivateController::class, 'group2Show'])->name('group2Show');
     Route::match(['get', 'post'], '/corporate-profile-shareholder-show', [PrivateController::class, 'shareholderShow'])->name('shareholderShow');
 
-    // // Default dashboard for authenticated users
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->middleware(['verified'])->name('dashboard');
+    // Default dashboard for authenticated users
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['verified'])->name('dashboard');
 
 });
 
