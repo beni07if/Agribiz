@@ -116,7 +116,9 @@
                                                     </div>
                                                     @if($isOngoing)
                                                         <div class="card-footer bg-white border-top text-warning fw-semibold">
-                                                            ⚠️ Group masih tahap identifikasi
+                                                            ⚠️ The group structure of {{ $subsidiary }} is still in the identification
+                                                            stage. To get more updated information about this group, please contact us at
+                                                            helpdesk@earthqualizer.org
                                                         </div>
                                                     @endif
                                                 </div>
@@ -125,14 +127,14 @@
                                                     <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
                                                         alt="Data Not Found" class="img-fluid mb-3 d-block mx-auto"
                                                         style="max-width: 220px;">
-
                                                     <p>
                                                         Group Structure document for <strong>{{ $subsidiary }}</strong> is not available
-                                                        at the moment.
-                                                        Please <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                        at the moment. Please Contact Us at <a
+                                                            href="mailto:helpdesk@earthqualizer.org">helpdesk@earthqualizer.org</a> to
+                                                        request this information.
+                                                        {{-- <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                             data-bs-target="#contactModal">
-                                                            Contact Us
-                                                        </a> to request this information.
+                                                        </a> --}}
                                                     </p>
                                                 </div>
                                             @endif

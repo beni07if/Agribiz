@@ -548,11 +548,12 @@
 
                                                             <p>
                                                                 Notary deed document for <strong>{{ $subsidiary }}</strong> is not available
-                                                                at the moment.
-                                                                Please <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                                at the moment. Please Contact Us at <a
+                                                                    href="mailto:helpdesk@earthqualizer.org">helpdesk@earthqualizer.org</a> to
+                                                                request this information.
+                                                                {{-- <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                                     data-bs-target="#contactModal">
-                                                                    Contact Us
-                                                                </a> to request this information.
+                                                                </a> --}}
                                                             </p>
                                                         </div>
                                                     @endif
