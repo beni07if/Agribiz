@@ -58,8 +58,10 @@
                     <ul>
                         <li><a href="{{route('corporateProfileEn')}}#home" class="active">Home</a></li>
                         <li><a href="{{route('corporateProfileEn')}}#about">About</a></li>
-                        <li class="dropdown"><a href="{{route('corporateProfileEn')}}#services"><span>Service</span> <i
-                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <li class="dropdown">
+                            <a href="{{route('corporateProfileEn')}}#services">
+                                <span>Service</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+                            </a>
                             <ul>
                                 <li><a href="{{route('groupFeature')}}">Group Structure</a></li>
                                 <li><a href="{{route('subsidiaryFeature')}}">Corporate Profile</a></li>
@@ -68,6 +70,41 @@
                             </ul>
                         </li>
                         <li><a href="{{route('corporateProfileEn')}}#faq">FAQ</a></li>
+
+                        @guest
+                            {{-- ✅ Jika belum login --}}
+                            <li>
+                                <a href="{{ route('login') }}">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                                </a>
+                            </li>
+                        @else
+                            {{-- ✅ Jika sudah login --}}
+                            <li class="dropdown">
+                                <a href="#">
+                                    <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                                    <i class="bi bi-chevron-down toggle-dropdown"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="{{ route('profile.edit') }}">
+                                            <p class="bi bi-person-lines-fill me-2"> Profile</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="d-flex align-items-center w-100 text-danger bg-transparent border-0 px-3 py-30">
+                                                <i class="bi bi-box-arrow-right me-2"></i>
+                                                <span>Logout</span>
+                                            </button>
+                                        </form>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        @endguest
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>

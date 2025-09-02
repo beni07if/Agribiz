@@ -50,7 +50,7 @@ Route::get('/', [WebViewController::class, 'index'])->name('corporateProfileEn')
 | Authenticated User Routes
 |--------------------------------------------------------------------------
 */
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -68,6 +68,11 @@ Route::middleware('auth')->group(function () {
     })->middleware(['verified'])->name('dashboard');
 
 });
+
+Route::middleware('auth')->group(function () {
+    Route::patch('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password');
+});
+
 
 // Change password route
 Route::patch('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])
@@ -103,13 +108,22 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
 |--------------------------------------------------------------------------
 */
 Route::resources([
-    'sras' => SraController::class,
+    // 'sra' => SraController::class,
     'faq' => FaqController::class,
     'policy' => PrivacyPolicyController::class,
     'term-and-condition' => TermConditionController::class,
     'landing-page' => LandingPageController::class,
     'feature' => FeatureController::class,
 ]);
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Import / Export Excel
+    Route::post('sra/import', [SraController::class, 'import'])->name('sra.import');
+    Route::get('sra/export', [SraController::class, 'export'])->name('sra.export');
+
+    // Resource SRA
+    Route::resource('sra', SraController::class);
+});
 
 /*
 |--------------------------------------------------------------------------

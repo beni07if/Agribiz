@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sra;
 use Illuminate\Http\Request;
+use App\Exports\SraExport;
+use App\Imports\SraImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SraController extends Controller
 {
@@ -11,7 +15,8 @@ class SraController extends Controller
      */
     public function index()
     {
-        //
+        $sras = Sra::all(); // bisa diganti pagination jika datanya besar
+        return view('admin.data.sra.index', compact('sras'));
     }
 
     /**
@@ -60,5 +65,24 @@ class SraController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function export()
+    {
+        return Excel::download(new SraExport, 'sra.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        try {
+            Excel::import(new SraImport, $request->file('file'));
+            return redirect()->back()->with('success', 'Data berhasil diimport!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Import gagal: ' . $e->getMessage());
+        }
     }
 }

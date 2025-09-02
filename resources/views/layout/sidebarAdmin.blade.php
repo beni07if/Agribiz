@@ -43,7 +43,7 @@
                             Consolidation</span></a></li>
                 <li><a href="{{ route('admin.companyOwnership') }}"><i class="bi bi-circle"></i><span>Company
                             Ownership</span></a></li>
-                <li><a href="{{ route('admin.sra') }}"><i class="bi bi-circle"></i><span>SRA</span></a></li>
+                <li><a href="{{ route('admin.sra.index') }}"><i class="bi bi-circle"></i><span>SRA</span></a></li>
             </ul>
         </li><!-- End Data Nav -->
 
