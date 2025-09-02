@@ -68,6 +68,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->middleware(['verified'])->name('dashboard');
 
 });
+Route::get('/serve-pdf/{filename}', function($filename) {
+    $path = public_path('file/group-structure/' . $filename);
+    if (!file_exists($path)) {
+        abort(404);
+    }
+    return response()->file($path);
+})->name('serve.pdf');
 
 Route::middleware('auth')->group(function () {
     Route::patch('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password');

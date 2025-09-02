@@ -87,6 +87,25 @@ class PrivateController extends Controller
         //
     }
 
+    public function servePDF($filename)
+    {
+        $filePath = public_path('file/group-structure/' . $filename);
+
+        if (!File::exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        $fileContent = File::get($filePath);
+        $headers = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $filename . '"',
+            'Cache-Control' => 'public, max-age=0',
+            'Pragma' => 'public',
+        ];
+
+        return response($fileContent, 200, $headers);
+    }
+
     public function group2Show(Request $request)
     {
 

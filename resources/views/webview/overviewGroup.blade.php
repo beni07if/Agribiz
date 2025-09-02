@@ -20,39 +20,140 @@
                             </div>
                         </div>
 
-                        <div class="service-hero">
-                            @foreach($groups->unique('group_name') as $subs)
-                                @php
-                                    $pdfPath = public_path('file/group-structure/' . $subs->group_name . '.pdf');
-                                    $pdfUrl = asset('file/group-structure/' . $subs->group_name . '.pdf');
-                                @endphp
+                        @if(count($groups) > 0)
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <div class="row">
+                                    @php
+                                        $directory = public_path('file/group-structure/');
+                                        $filesInDirectory = scandir($directory);
+                                    @endphp
 
-                                @if(file_exists($pdfPath))
-                                    <!-- PDF Viewer -->
-                                    <div class="service-content">
-                                        <div class="service-header">
-                                            <h4 class="card-title">Group Structure document of <span
-                                                    class="fw-bold">{{$subs->group_name}}</span></h4>
+                                    @foreach($groups->groupBy('group_name') as $subsidiaryGroup)
+                                        @php
+                                            $subsidiary = $subsidiaryGroup->first()->group_name;
+                                            $isOngoing = false;
+                                            $selectedVersion = null;
+                                            $versionBadge = null;
+
+                                            $matchingFiles = collect($filesInDirectory)->filter(function ($file) use ($subsidiary) {
+                                                if (in_array($file, ['.', '..']))
+                                                    return false;
+                                                $nameOnly = pathinfo($file, PATHINFO_FILENAME);
+                                                $cleanName = preg_replace('/^\d{4}\s+\d{2}\s+/', '', $nameOnly);
+                                                $cleanNameForMatch = preg_replace('/\s*\(.*\)$/i', '', $cleanName);
+                                                return trim(strtolower($cleanNameForMatch)) === trim(strtolower($subsidiary));
+                                            });
+
+                                            if ($matchingFiles->isNotEmpty()) {
+                                                $latestFile = $matchingFiles->sortByDesc(function ($file) {
+                                                    $nameOnly = pathinfo($file, PATHINFO_FILENAME);
+                                                    $priority = 0;
+                                                    if (preg_match('/\(update v\.2\)$/i', $nameOnly)) {
+                                                        $priority = 3;
+                                                    } elseif (preg_match('/\(update v\.1\)$/i', $nameOnly)) {
+                                                        $priority = 2;
+                                                    } elseif (preg_match('/\(ongoing\)$/i', $nameOnly)) {
+                                                        $priority = 1;
+                                                    }
+                                                    $dateScore = 0;
+                                                    if (preg_match('/^(\d{4})\s+(\d{2})/', $file, $m)) {
+                                                        $dateScore = intval($m[1] . $m[2]);
+                                                    }
+                                                    return ($priority * 1000000) + $dateScore;
+                                                })->first();
+
+                                                $fileNameInDirectory = $latestFile;
+                                                $fileExtension = pathinfo($fileNameInDirectory, PATHINFO_EXTENSION);
+                                                $selectedVersion = pathinfo($fileNameInDirectory, PATHINFO_FILENAME);
+
+                                                if (preg_match('/\(update v\.2\)$/i', $selectedVersion)) {
+                                                    $versionBadge = '<span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Update v.2</span>';
+                                                } elseif (preg_match('/\(update v\.1\)$/i', $selectedVersion)) {
+                                                    $versionBadge = '<span class="badge bg-primary"><i class="bi bi-journal-text me-1"></i>Update v.1</span>';
+                                                } elseif (preg_match('/\(ongoing\)$/i', $selectedVersion)) {
+                                                    $versionBadge = '<span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split me-1"></i>Ongoing</span>';
+                                                    $isOngoing = true;
+                                                } else {
+                                                    $versionBadge = '<span class="badge bg-secondary"><i class="bi bi-file-earmark-text me-1"></i>Latest</span>';
+                                                }
+
+                                                if ($fileExtension === 'pdf') {
+                                                    $googleDocsUrl = asset('file/group-structure/' . $fileNameInDirectory);
+                                                } elseif ($fileExtension === 'pptx') {
+                                                    $googleDocsUrl = 'https://docs.google.com/viewer?url=' . urlencode(asset('file/group-structure/' . $fileNameInDirectory));
+                                                } else {
+                                                    $googleDocsUrl = '';
+                                                }
+                                            } else {
+                                                $googleDocsUrl = '';
+                                            }
+                                        @endphp
+
+                                        <div class="col-12 mb-4">
+                                            @if($googleDocsUrl)
+                                                <div class="card shadow-sm border-0 rounded-3">
+                                                    <div
+                                                        class="card-header bg-light border-bottom-0 d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <h6 class="mb-0 fw-bold">
+                                                                {{ $subsidiary }}
+                                                                @if($selectedVersion)
+                                                                    <small class="text-muted ms-2">{{ $selectedVersion }}</small>
+                                                                @endif
+                                                            </h6>
+                                                        </div>
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            {!! $versionBadge !!}
+                                                            <a href="{{ $googleDocsUrl }}" target="_blank"
+                                                                class="btn btn-sm btn-outline-primary" title="View Fullscreen">
+                                                                <i class="bi bi-arrows-fullscreen"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body p-0">
+                                                        <iframe src="{{ $googleDocsUrl }}" class="iframe-preview"
+                                                            allowfullscreen></iframe>
+                                                    </div>
+                                                    @if($isOngoing)
+                                                        <div class="card-footer bg-white border-top text-warning fw-semibold">
+                                                            ⚠️ Group masih tahap identifikasi
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @else
+                                                <div class="card shadow-sm border-0 rounded-3 text-center p-4">
+                                                    <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
+                                                        alt="Data Not Found" class="img-fluid mb-3 d-block mx-auto"
+                                                        style="max-width: 220px;">
+
+                                                    <p>
+                                                        Group Structure document for <strong>{{ $subsidiary }}</strong> is not available
+                                                        at the moment.
+                                                        Please <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                            data-bs-target="#contactModal">
+                                                            Contact Us
+                                                        </a> to request this information.
+                                                    </p>
+                                                </div>
+                                            @endif
                                         </div>
-                                    </div>
-                                    <div class="pdf-viewer mb-4">
-                                        <iframe src="{{ $pdfUrl }}" width="100%" height="600px" style="border: none;"></iframe>
-                                    </div>
-                                @else
-                                    <!-- Narasi dan Gambar Jika PDF Tidak Ada -->
-                                    <div class="no-data text-center p-5">
-                                        <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
-                                            alt="Data Not Found" class="img-fluid mb-3" style="max-width: 300px;">
-                                        <p>Group Structure document for <strong>{{ $subs->group_name }}</strong> is not
-                                            available at the moment. Please <a href="#" class="btn btn-info btn-sm"
-                                                data-bs-toggle="modal" data-bs-target="#contactModal">
-                                                Contact Us
-                                            </a> to request this information.
-                                        </p>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
+                                    @endforeach
+                                </div>
+
+                                <h6 class="card-title mt-4"><i>*Data source by Inovasi Digital</i></h6>
+                            </div>
+                        @endif
+
+                        <style>
+                            .iframe-preview {
+                                width: 100%;
+                                min-height: 400px;
+                                height: 70vh;
+                                /* Responsive tinggi relatif viewport */
+                                border: none;
+                            }
+                        </style>
+
                         <!-- Modal Popup -->
                         <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel"
                             aria-hidden="true">

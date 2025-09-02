@@ -483,44 +483,88 @@
                                     <div class="service-hero" style="margin-bottom: -10px">
 
                                         @if(isset($consolidations) && $consolidations->isNotEmpty())
+                                            @php
+                                                $directory = public_path('file/notary-deed/');
+                                                $filesInDirectory = scandir($directory);
+                                            @endphp
+
                                             @foreach($consolidations->unique('subsidiary') as $subs)
                                                 @php
-                                                    $pdfPath = public_path('file/notary-deed/' . $subs->subsidiary . '.pdf');
-                                                    $pdfUrl = asset('file/notary-deed/' . $subs->subsidiary . '.pdf');
+                                                    $subsidiary = $subs->subsidiary;
+                                                    $selectedFile = null;
+
+                                                    // Cari file yang cocok (abaikan 1 kata pertama pada nama file)
+                                                    $matchingFiles = collect($filesInDirectory)->filter(function ($file) use ($subsidiary) {
+                                                        if (in_array($file, ['.', '..']))
+                                                            return false;
+
+                                                        $nameOnly = pathinfo($file, PATHINFO_FILENAME);
+
+                                                        // buang angka tahun + bulan di depan (misalnya "2024 08")
+                                                        $cleanName = preg_replace('/^\d{4}\s+\d{2}\s+/', '', $nameOnly);
+
+                                                        // abaikan 1 kata pertama
+                                                        $cleanNameParts = explode(' ', $cleanName, 2);
+                                                        $cleanNameForMatch = isset($cleanNameParts[1]) ? $cleanNameParts[1] : $cleanNameParts[0];
+
+                                                        return trim(strtolower($cleanNameForMatch)) === trim(strtolower($subsidiary));
+                                                    });
+
+                                                    if ($matchingFiles->isNotEmpty()) {
+                                                        // Ambil file terbaru berdasarkan tanggal (tahun+bulan di depan nama file)
+                                                        $selectedFile = $matchingFiles->sortByDesc(function ($file) {
+                                                            if (preg_match('/^(\d{4})\s+(\d{2})/', $file, $m)) {
+                                                                return intval($m[1] . $m[2]);
+                                                            }
+                                                            return 0;
+                                                        })->first();
+
+                                                        $fileUrl = asset('file/notary-deed/' . $selectedFile);
+                                                    } else {
+                                                        $fileUrl = null;
+                                                    }
                                                 @endphp
 
-                                                @if(file_exists($pdfPath))
-                                                    <!-- PDF Viewer -->
-                                                    <div class="service-content">
-                                                        <div class="service-header">
-                                                            <h4 class="card-title">
-                                                                The Notary Deed document of <span class="fw-bold">{{ $subs->subsidiary }}</span>
-                                                            </h4>
+                                                <div class="col-12 mb-4">
+                                                    @if($fileUrl)
+                                                        <!-- PDF Viewer -->
+                                                        <div class="card shadow-sm border-0 rounded-3">
+                                                            <div class="card-header bg-light border-bottom-0">
+                                                                <h6 class="mb-0 fw-bold">
+                                                                    The Notary Deed document of
+                                                                    <span class="text-primary">{{ $subsidiary }}</span>
+                                                                </h6>
+                                                            </div>
+                                                            <div class="card-body p-0">
+                                                                <iframe src="{{ $fileUrl }}" class="iframe-preview" allowfullscreen></iframe>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="pdf-viewer mb-4">
-                                                        <iframe src="{{ $pdfUrl }}" width="100%" height="600px" style="border: none;"></iframe>
-                                                    </div>
-                                                @else
-                                                    <!-- Narasi dan Gambar Jika PDF Tidak Ada -->
-                                                    <div class="no-data text-center p-5">
-                                                        <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
-                                                            alt="Data Not Found" class="img-fluid mb-3" style="max-width: 300px;">
-                                                        <p>Notary deed document for <strong>{{ $subs->subsidiary }}</strong> is not
-                                                            available at the moment. Please <a href="#" class="btn btn-info btn-sm"
-                                                                data-bs-toggle="modal" data-bs-target="#contactModal">
-                                                                Contact Us
-                                                            </a> to request this information.
-                                                        </p>
-                                                    </div>
-                                                @endif
+                                                    @else
+                                                        <!-- Narasi dan Gambar Jika PDF Tidak Ada -->
+                                                        <div class="card shadow-sm border-0 rounded-3 text-center p-4">
+                                                            <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
+                                                                alt="Data Not Found" class="img-fluid mb-3 d-block mx-auto"
+                                                                style="max-width: 220px;">
+
+                                                            <p>
+                                                                Notary deed document for <strong>{{ $subsidiary }}</strong> is not available
+                                                                at the moment.
+                                                                Please <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                                    data-bs-target="#contactModal">
+                                                                    Contact Us
+                                                                </a> to request this information.
+                                                            </p>
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             @endforeach
                                         @else
                                             <!-- Jika tidak ada data consolidations sama sekali -->
                                             <div class="no-data text-center p-5">
                                                 <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
                                                     alt="No Data Found" class="img-fluid mb-3" style="max-width: 300px;">
-                                                <p>Notary deed document for this company is not available at the moment. If you want to
+                                                <p>
+                                                    Notary deed document for this company is not available at the moment. If you want to
                                                     access it, please <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#contactModal">
                                                         Contact Us
@@ -528,6 +572,17 @@
                                                 </p>
                                             </div>
                                         @endif
+
+                                        <style>
+                                            .iframe-preview {
+                                                width: 100%;
+                                                min-height: 400px;
+                                                height: 70vh;
+                                                /* Responsive tinggi relatif viewport */
+                                                border: none;
+                                            }
+                                        </style>
+
 
                                         <!-- Modal Popup (sama untuk semua kondisi) -->
                                         <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel"
