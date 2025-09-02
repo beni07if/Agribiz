@@ -70,6 +70,7 @@
                                 <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                                    ({{ Auth::user()->role }} - {{ Auth::user()->level }})
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow">
                                     <li>

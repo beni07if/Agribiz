@@ -48,13 +48,13 @@
                                                 $latestFile = $matchingFiles->sortByDesc(function ($file) {
                                                     $nameOnly = pathinfo($file, PATHINFO_FILENAME);
                                                     $priority = 0;
-                                                    if (preg_match('/\(update v\.2\)$/i', $nameOnly)) {
+                                                    if (preg_match('/\(update v\.2\)$/i', $nameOnly))
                                                         $priority = 3;
-                                                    } elseif (preg_match('/\(update v\.1\)$/i', $nameOnly)) {
+                                                    elseif (preg_match('/\(update v\.1\)$/i', $nameOnly))
                                                         $priority = 2;
-                                                    } elseif (preg_match('/\(ongoing\)$/i', $nameOnly)) {
+                                                    elseif (preg_match('/\(ongoing\)$/i', $nameOnly))
                                                         $priority = 1;
-                                                    }
+
                                                     $dateScore = 0;
                                                     if (preg_match('/^(\d{4})\s+(\d{2})/', $file, $m)) {
                                                         $dateScore = intval($m[1] . $m[2]);
@@ -77,64 +77,70 @@
                                                     $versionBadge = '<span class="badge bg-secondary"><i class="bi bi-file-earmark-text me-1"></i>Latest</span>';
                                                 }
 
-                                                if ($fileExtension === 'pdf') {
-                                                    $googleDocsUrl = asset('file/group-structure/' . $fileNameInDirectory);
-                                                } elseif ($fileExtension === 'pptx') {
-                                                    $googleDocsUrl = 'https://docs.google.com/viewer?url=' . urlencode(asset('file/group-structure/' . $fileNameInDirectory));
-                                                } else {
-                                                    $googleDocsUrl = '';
-                                                }
+                                                $googleDocsUrl = asset('file/group-structure/' . $fileNameInDirectory);
                                             } else {
                                                 $googleDocsUrl = '';
                                             }
                                         @endphp
 
                                         <div class="col-12 mb-4">
-                                            @if($googleDocsUrl)
-                                                <div class="card shadow-sm border-0 rounded-3">
-                                                    <div
-                                                        class="card-header bg-light border-bottom-0 d-flex justify-content-between align-items-center">
-                                                        <div>
-                                                            <h6 class="mb-0 fw-bold">
-                                                                {{ $subsidiary }}
-                                                                @if($selectedVersion)
-                                                                    <small class="text-muted ms-2">{{ $selectedVersion }}</small>
-                                                                @endif
-                                                            </h6>
+                                            @if(Auth::check() && Auth::user()->level === 'Platinum')
+                                                {{-- Hanya Platinum --}}
+                                                @if($googleDocsUrl)
+                                                    <div class="card shadow-sm border-0 rounded-3">
+                                                        <div
+                                                            class="card-header bg-light border-bottom-0 d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <h6 class="mb-0 fw-bold">
+                                                                    {{ $subsidiary }}
+                                                                    @if($selectedVersion)
+                                                                        <small class="text-muted ms-2">{{ $selectedVersion }}</small>
+                                                                    @endif
+                                                                </h6>
+                                                            </div>
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                {!! $versionBadge !!}
+                                                                <a href="{{ $googleDocsUrl }}" target="_blank"
+                                                                    class="btn btn-sm btn-outline-primary" title="View Fullscreen">
+                                                                    <i class="bi bi-arrows-fullscreen"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="d-flex align-items-center gap-2">
-                                                            {!! $versionBadge !!}
-                                                            <a href="{{ $googleDocsUrl }}" target="_blank"
-                                                                class="btn btn-sm btn-outline-primary" title="View Fullscreen">
-                                                                <i class="bi bi-arrows-fullscreen"></i>
-                                                            </a>
+                                                        <div class="card-body p-0 text-center">
+                                                            <object data="{{ $googleDocsUrl }}" type="application/pdf" class="pdf-preview">
+                                                                <p>Cannot display PDF. <a href="{{ $googleDocsUrl }}" target="_blank">Open
+                                                                        here</a>.</p>
+                                                            </object>
                                                         </div>
+                                                        @if($isOngoing)
+                                                            <div class="card-footer bg-white border-top text-warning fw-semibold">
+                                                                ⚠️ The group structure of {{ $subsidiary }} is still in the identification
+                                                                stage. Contact us at helpdesk@earthqualizer.org
+                                                            </div>
+                                                        @endif
                                                     </div>
-                                                    <div class="card-body p-0">
-                                                        <iframe src="{{ $googleDocsUrl }}" class="iframe-preview"
-                                                            allowfullscreen></iframe>
+                                                @else
+                                                    <div class="card shadow-sm border-0 rounded-3 text-center p-4">
+                                                        <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
+                                                            alt="Data Not Found" class="img-fluid mb-3 d-block mx-auto"
+                                                            style="max-width: 220px;">
+                                                        <p>
+                                                            Group Structure document for <strong>{{ $subsidiary }}</strong> is not available
+                                                            at the moment. Please contact us at
+                                                            <a href="mailto:helpdesk@earthqualizer.org">helpdesk@earthqualizer.org</a>
+                                                            to get the data or other information.
+                                                        </p>
+
                                                     </div>
-                                                    @if($isOngoing)
-                                                        <div class="card-footer bg-white border-top text-warning fw-semibold">
-                                                            ⚠️ The group structure of {{ $subsidiary }} is still in the identification
-                                                            stage. To get more updated information about this group, please contact us at
-                                                            helpdesk@earthqualizer.org
-                                                        </div>
-                                                    @endif
-                                                </div>
+                                                @endif
                                             @else
-                                                <div class="card shadow-sm border-0 rounded-3 text-center p-4">
-                                                    <img src="{{ asset('template/Passion/assets/img/services/services-7.webp') }}"
-                                                        alt="Data Not Found" class="img-fluid mb-3 d-block mx-auto"
-                                                        style="max-width: 220px;">
+                                                {{-- Silver / Gold --}}
+                                                <div class="card shadow-sm border-0 rounded-3 text-center p-4 bg-light">
+                                                    <i class="bi bi-lock-fill text-secondary fs-1 mb-3"></i>
                                                     <p>
-                                                        Group Structure document for <strong>{{ $subsidiary }}</strong> is not available
-                                                        at the moment. Please Contact Us at <a
-                                                            href="mailto:helpdesk@earthqualizer.org">helpdesk@earthqualizer.org</a> to
-                                                        request this information.
-                                                        {{-- <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                            data-bs-target="#contactModal">
-                                                        </a> --}}
+                                                        Access to <strong>Group Structure</strong> documents is
+                                                        <span class="fw-bold text-danger">restricted</span>. <br>
+                                                        Upgrade to <span class="badge bg-dark">Platinum</span> to view this content.
                                                     </p>
                                                 </div>
                                             @endif
@@ -147,11 +153,10 @@
                         @endif
 
                         <style>
-                            .iframe-preview {
+                            .pdf-preview {
                                 width: 100%;
-                                min-height: 400px;
-                                height: 70vh;
-                                /* Responsive tinggi relatif viewport */
+                                height: 80vh;
+                                /* biar lebih tinggi */
                                 border: none;
                             }
                         </style>
