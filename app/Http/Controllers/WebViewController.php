@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\Landingpage;
 use App\Models\Faq;
 use App\Models\Sra;
+use App\Models\Policy;
 use Illuminate\Support\Facades\Http;
 use DOMDocument;
 use Illuminate\Support\Facades\DB;
@@ -406,7 +407,7 @@ class WebViewController extends Controller
     public function privacyPolicy()
     {
         $policies = Policy::all();
-        return view('content.footer.privacyPolicy', compact('policies'));
+        return view('webview.privacyPolicy', compact('policies'));
     }
 
     public function termAndCondition()

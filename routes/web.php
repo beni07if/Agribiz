@@ -38,6 +38,7 @@ Route::get('/', [WebViewController::class, 'index'])->name('corporateProfileEn')
     Route::get('/search-other-companies', [WebViewController::class, 'searchFunctionOtherCompany'])->name('searchFunctionOtherCompany');
     Route::get('/search-shareholders', [WebViewController::class, 'searchFunctionShareholder'])->name('searchFunctionShareholder');
     Route::get('/search-sra', [WebViewController::class, 'searchFunctionSRA'])->name('searchFunctionSRA');
+    Route::get('/privacy-policy', [WebViewController::class, 'privacyPolicy'])->name('privacyPolicy');
 
     // Features public
     Route::get('/group-feature', [WebViewController::class, 'groupFeature'])->name('groupFeature');

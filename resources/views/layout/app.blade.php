@@ -131,7 +131,9 @@
         </div>
         <div class="container copyright text-center mt-4">
             <p>© <strong class="px-1 sitename">Agribiz</strong> All Rights Reserved</p>
+            <p><a href="{{ route('privacyPolicy') }}" class="privacy-link text-decoration-none">Privacy & Policy</a></p>
         </div>
+
     </footer>
     <!-- End Footer -->
 
