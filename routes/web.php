@@ -20,7 +20,8 @@ use App\Http\Controllers\{
     WebViewController,
     PrivateController,
     Auth\GoogleAuthController,
-    Auth\AuthenticatedSessionController
+    Auth\AuthenticatedSessionController,
+    UserController
 };
 use App\Http\Middleware\CheckUserLevel;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -45,6 +46,7 @@ Route::get('/', [WebViewController::class, 'index'])->name('corporateProfileEn')
     Route::get('/subsidiary-feature', [WebViewController::class, 'subsidiaryFeature'])->name('subsidiaryFeature');
     Route::get('/shareholder-feature', [WebViewController::class, 'shareholderFeature'])->name('shareholderFeature');
     Route::get('/sra-feature', [WebViewController::class, 'sraFeature'])->name('sraFeature');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +124,7 @@ Route::resources([
     'term-and-condition' => TermConditionController::class,
     'landing-page' => LandingPageController::class,
     'feature' => FeatureController::class,
+    'user' => UserController::class,
 ]);
 
 Route::prefix('admin')->name('admin.')->group(function () {

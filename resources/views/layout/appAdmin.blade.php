@@ -320,6 +320,51 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('template/NiceAdmin/assets/js/main.js')}}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session("success") }}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            @endif
+
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session("error") }}',
+                    showConfirmButton: true
+                });
+            @endif
+
+            @if(session('warning'))
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Perhatian!',
+                    text: '{{ session("warning") }}',
+                    showConfirmButton: true
+                });
+            @endif
+
+            @if(session('info'))
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Informasi',
+                    text: '{{ session("info") }}',
+                    showConfirmButton: true
+                });
+            @endif
+    });
+    </script>
+
+    @yield('scripts')
+
 </body>
 
 </html>

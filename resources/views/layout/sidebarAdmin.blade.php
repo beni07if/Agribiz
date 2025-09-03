@@ -32,6 +32,20 @@
             </a>
         </li>
 
+        <li>
+            <a class="nav-link {{ request()->routeIs('user.index') ? '' : 'collapsed' }}"
+                href="{{ route('user.index') }}">
+                <i class="bi bi-person"></i><span>User</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="nav-link {{ request()->routeIs('admin.profile') ? '' : 'collapsed' }}"
+                href="{{ route('admin.profile') }}">
+                <i class="bi bi-person"></i><span>Profile</span>
+            </a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#data-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-database"></i><span>Data</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -46,13 +60,6 @@
                 <li><a href="{{ route('admin.sra.index') }}"><i class="bi bi-circle"></i><span>SRA</span></a></li>
             </ul>
         </li><!-- End Data Nav -->
-
-        <li>
-            <a class="nav-link {{ request()->routeIs('admin.profile') ? '' : 'collapsed' }}"
-                href="{{ route('admin.profile') }}">
-                <i class="bi bi-person"></i><span>Profile</span>
-            </a>
-        </li>
 
         <li>
             <form method="POST" action="{{ route('admin.logout') }}">
