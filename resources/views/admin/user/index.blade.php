@@ -107,9 +107,9 @@
                                                             value="{{ $user->email }}">
 
                                                         <select name="role" class="form-control mb-2">
-                                                            <option value="Admin" {{ $user->role == 'Admin' ? 'selected' : '' }}>
+                                                            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>
                                                                 Admin</option>
-                                                            <option value="User" {{ $user->role == 'User' ? 'selected' : '' }}>
+                                                            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>
                                                                 User</option>
                                                         </select>
 
@@ -172,8 +172,8 @@
                         <div class="mb-3">
                             <label>Role</label>
                             <select name="role" class="form-control">
-                                <option value="Admin">Admin</option>
-                                <option value="User">User</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
                             </select>
                         </div>
                         <div class="mb-3">
