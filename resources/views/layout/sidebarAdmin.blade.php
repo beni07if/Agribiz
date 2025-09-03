@@ -1,34 +1,34 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
 
-        <li class="nav-item">
+        <li>
             <a class="nav-link {{ request()->routeIs('admin.dashboard.admin') ? '' : 'collapsed' }}"
                 href="{{ route('admin.dashboard.admin') }}">
                 <i class="bi bi-grid"></i><span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('landing-page.index') }}">
-                <i class="bi bi-house"></i><span>Landing Page</span>
+        <li>
+            <a class="nav-link {{ request()->routeIs('landing-page.index') ? '' : 'collapsed' }}" href="#">
+                <i class="bi bi-person"></i><span>Landing Page</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('faq.index') }}">
-                <i class="bi bi-question-circle"></i><span>FAQ</span>
+        <li>
+            <a class="nav-link {{ request()->routeIs('faq.index') ? '' : 'collapsed' }}" href="#">
+                <i class="bi bi-person"></i><span>FAQ</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('policy.index') }}">
-                <i class="bi bi-shield-check"></i><span>Public & Policy</span>
+        <li>
+            <a class="nav-link {{ request()->routeIs('policy.index') ? '' : 'collapsed' }}" href="#">
+                <i class="bi bi-person"></i><span>Public & Policy</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('term-and-condition.index') }}">
-                <i class="bi bi-file-text"></i><span>Terms & Conditions</span>
+        <li>
+            <a class="nav-link {{ request()->routeIs('term-and-condition.index') ? '' : 'collapsed' }}" href="#">
+                <i class="bi bi-person"></i><span>Terms & Conditions</span>
             </a>
         </li>
 
@@ -46,7 +46,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        <li>
             <a class="nav-link collapsed" data-bs-target="#data-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-database"></i><span>Data</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -64,7 +64,7 @@
         <li>
             <form method="POST" action="{{ route('admin.logout') }}">
                 @csrf
-                <button type="submit" class="nav-link btn w-100 text-start">
+                <button type="submit" class="nav-link collapsed btn w-100 text-start">
                     <i class="bi bi-box-arrow-right"></i><span>Logout</span>
                 </button>
             </form>
