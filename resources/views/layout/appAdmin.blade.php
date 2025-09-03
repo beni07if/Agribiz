@@ -48,7 +48,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{route('admin.dashboard.admin')}}" class="logo d-flex align-items-center">
+            <a href="{{route('corporateProfileEn')}}" class="logo d-flex align-items-center">
                 <img src="{{ asset('template/Passion/assets/img/Agribiz_Color.png') }}" alt="">
                 <span class="d-none d-lg-block"></span>
             </a>
