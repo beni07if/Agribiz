@@ -77,6 +77,50 @@
 
         </section><!-- /Hero Section -->
 
+        <!-- Featured Services Section -->
+        <section id="featured-services" class="featured-services section light-background">
+
+            <!-- Section Title -->
+            <div class="container section-title">
+                <h2>Featured Services</h2>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row">
+                    <p>The Supplier Group Monitoring Programme has evolved into an interactive dashboard called Geometrack.
+                        This tool facilitates the identification and monitoring of deforestation and peatland conversion
+                        risk areas within your supply chain.</p>
+                    <div class="col-lg-6">
+                        <div class="services-content" data-aos-duration="900">
+                            <p data-aos-duration="800">We perform No Deforestation No Peat and No Exploitation (NDPE) due
+                                diligence at the group level with a focus on non-compliance risk to recommend whether
+                                commercial relationships should continue or hold. We also verify ownership structures to
+                                track compliance, using a robust ownership database that is continuously maintained and
+                                updated. This verification process is exclusive to palm oil operations. For entities not
+                                related to palm oil (non-palm), we address issues on an ad hoc basis, which may involve
+                                grievances or specific risks, potentially leading to additional charges.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="services-content" data-aos-duration="900">
+                            <p data-aos-duration="800">Corporate Profile is a platform that provides information about the
+                                ownership structure of companies, shareholders, and their network with other companies. Its
+                                key features include group structure, corporate profile, share ownership, and Sustainability
+                                Risk Assessment (SRA). The information within this platform is divided into two categories:
+                                public information and private information. Key features, which include group structure,
+                                corporate profile, share ownership, and SRA, can only be accessed by users who are logged in
+                                or have an account on this platform. Thus, Corporate Profile ensures that important and
+                                detailed information is only available to registered users, maintaining the confidentiality
+                                and security of sensitive data.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section><!-- /Featured Services Section -->
+
         <!-- About Section -->
         <section id="about" class="about section">
 
@@ -155,173 +199,6 @@
             </div>
 
         </section><!-- /About Section -->
-
-        <!-- Featured Services Section -->
-        <section id="featured-services" class="featured-services section light-background" hidden>
-
-            <!-- Section Title -->
-            <div class="container section-title">
-                <h2>Featured Services</h2>
-                <p>Featured Services</p>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="services-content" data-aos-duration="900">
-                            <span class="subtitle">Professional Services</span>
-                            <h2> Understanding the Hierarchy of Beneficial Ownership of a Companies Group</h2>
-                            <p data-aos-duration="800">Welcome to our platform, where we help you understand the complexity
-                                of the company's structure through clear hierarchical identification. With a focus on
-                                entities and subsidiaries, we explain the relationships between companies, as well as
-                                provide in-depth insights into shareholders and beneficial ownership. Discover how each
-                                element interacts in the business ecosystem, and improve your understanding of the dynamics
-                                of corporate governance.</p>
-                            <div class="mt-4" data-aos-duration="1100">
-                                <a href="#" class="btn-consultation"><span>Request a Consultation</span><i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="services-image">
-                            <img src="{{ ('template/Passion/assets/img/services/services-9.webp') }}"
-                                alt="Business Services" class="img-fluid">
-                            <div class="shape-circle"></div>
-                            <div class="shape-accent"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-5" data-aos-duration="1000">
-                    <div class="col-12">
-                        <div class="services-slider swiper init-swiper">
-                            <script type="application/json" class="swiper-config">
-                                                            {
-                                                                "slidesPerView": 3,
-                                                                "spaceBetween": 20,
-                                                                "loop": true,
-                                                                "speed": 600,
-                                                                "autoplay": {
-                                                                "delay": 5000
-                                                                },
-                                                                "navigation": {
-                                                                "nextEl": ".swiper-nav-next",
-                                                                "prevEl": ".swiper-nav-prev"
-                                                                },
-                                                                "breakpoints": {
-                                                                "320": {
-                                                                    "slidesPerView": 1
-                                                                },
-                                                                "768": {
-                                                                    "slidesPerView": 2
-                                                                },
-                                                                "992": {
-                                                                    "slidesPerView": 3
-                                                                }
-                                                                }
-                                                            }
-                                                                    </script>
-                            <div class="swiper-wrapper">
-
-                                <div class="swiper-slide">
-                                    <div class="service-card">
-                                        <div class="icon-box">
-                                            <i class="bi bi-bar-chart-fill"></i>
-                                        </div>
-                                        <a href="#" class="arrow-link"><i class="bi bi-arrow-right"></i></a>
-                                        <div class="content">
-                                            <h4><a href="#">Financial Strategy Development</a></h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.
-                                                Cras vehicula magna eget lectus varius, at finibus massa condimentum.
-                                            </p>
-                                            <div class="service-number">01</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="service-card">
-                                        <div class="icon-box">
-                                            <i class="bi bi-graph-up-arrow"></i>
-                                        </div>
-                                        <a href="#" class="arrow-link"><i class="bi bi-arrow-right"></i></a>
-                                        <div class="content">
-                                            <h4><a href="#">Market Expansion Advisory</a></h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.
-                                                Cras vehicula magna eget lectus varius, at finibus massa condimentum.
-                                            </p>
-                                            <div class="service-number">02</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="service-card">
-                                        <div class="icon-box">
-                                            <i class="bi bi-shield-check"></i>
-                                        </div>
-                                        <a href="#" class="arrow-link"><i class="bi bi-arrow-right"></i></a>
-                                        <div class="content">
-                                            <h4><a href="#">Risk Management Solutions</a></h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.
-                                                Cras vehicula magna eget lectus varius, at finibus massa condimentum.
-                                            </p>
-                                            <div class="service-number">03</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="service-card">
-                                        <div class="icon-box">
-                                            <i class="bi bi-lightbulb-fill"></i>
-                                        </div>
-                                        <a href="#" class="arrow-link"><i class="bi bi-arrow-right"></i></a>
-                                        <div class="content">
-                                            <h4><a href="#">Innovation &amp; Digital Transformation</a></h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.
-                                                Cras vehicula magna eget lectus varius, at finibus massa condimentum.
-                                            </p>
-                                            <div class="service-number">04</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="service-card">
-                                        <div class="icon-box">
-                                            <i class="bi bi-people-fill"></i>
-                                        </div>
-                                        <a href="#" class="arrow-link"><i class="bi bi-arrow-right"></i></a>
-                                        <div class="content">
-                                            <h4><a href="#">Talent Management Strategy</a></h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.
-                                                Cras vehicula magna eget lectus varius, at finibus massa condimentum.
-                                            </p>
-                                            <div class="service-number">05</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="swiper-navigation">
-                            <button class="swiper-nav-prev"><i class="bi bi-chevron-left"></i></button>
-                            <button class="swiper-nav-next"><i class="bi bi-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </section><!-- /Featured Services Section -->
 
         <!-- How We Work Section -->
         <section id="how-we-work" class="how-we-work section" hidden>
@@ -922,7 +799,7 @@
                                 </div>
                                 <div class="contact-text">
                                     <h4>Email</h4>
-                                    <p>helpdesk@earthqualizer.org</p>
+                                    <p>helpdesk@inovasidigital.asia</p>
                                 </div>
                             </div>
 

@@ -115,7 +115,7 @@
                                                         @if($isOngoing)
                                                             <div class="card-footer bg-white border-top text-warning fw-semibold">
                                                                 ⚠️ The group structure of {{ $subsidiary }} is still in the identification
-                                                                stage. Contact us at helpdesk@earthqualizer.org
+                                                                stage. Contact us at helpdesk@inovasidigital.asia
                                                             </div>
                                                         @endif
                                                     </div>
@@ -127,7 +127,7 @@
                                                         <p>
                                                             Group Structure document for <strong>{{ $subsidiary }}</strong> is not available
                                                             at the moment. Please contact us at
-                                                            <a href="mailto:helpdesk@earthqualizer.org">helpdesk@earthqualizer.org</a>
+                                                            <a href="mailto:helpdesk@inovasidigital.asia">helpdesk@inovasidigital.asia</a>
                                                             to get the data or other information.
                                                         </p>
 
@@ -779,7 +779,7 @@
                                         </div> --}}
                                         <div class="contact-item">
                                             <i class="bi bi-envelope"></i>
-                                            <span>helpdesk@earthqualizer.org</span>
+                                            <span>helpdesk@inovasidigital.asia</span>
                                         </div>
                                     </div>
                                     {{-- <a href="#" class="btn btn-primary">Get Quote</a> --}}

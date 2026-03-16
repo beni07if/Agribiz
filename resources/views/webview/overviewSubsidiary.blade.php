@@ -559,7 +559,8 @@
                                                                 <p>
                                                                     Notary deed document for <strong>{{ $subsidiary }}</strong> is not available.
                                                                     Please Contact Us at <a
-                                                                        href="mailto:helpdesk@earthqualizer.org">helpdesk@earthqualizer.org</a> to
+                                                                        href="mailto:helpdesk@inovasidigital.asia">helpdesk@inovasidigital.asia</a>
+                                                                    to
                                                                     request this information.
                                                                     {{-- <a href="#" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                                         data-bs-target="#contactModal">Contact Us</a> --}}

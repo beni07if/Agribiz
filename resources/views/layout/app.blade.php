@@ -125,7 +125,7 @@
                     <p>Anggrek Street</p>
                     <p>Pontianak, West Kalimantan</p>
                     <p>Indonesia</p>
-                    <p><strong>Email:</strong> <span>helpdesk@earthqualizer.org</span></p>
+                    <p><strong>Email:</strong> <span>helpdesk@inovasidigital.asia</span></p>
                 </div>
             </div>
         </div>
