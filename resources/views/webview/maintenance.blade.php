@@ -126,7 +126,7 @@
 
             <p class="subtitle">
                 Kami sedang melakukan peningkatan sistem untuk memberikan layanan yang lebih baik.
-                Website ini (Agribiz) dapat diakses kembali jika update sudah selesai.
+                Silakan kunjungi kembali nanti.
             </p>
 
             <div class="loader"></div>
