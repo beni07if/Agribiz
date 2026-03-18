@@ -31,7 +31,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 | Public Routes
 |--------------------------------------------------------------------------
 */
-// Route::get('/', [WebViewController::class, 'index'])->name('corporateProfileEn');
+Route::get('/home', [WebViewController::class, 'index'])->name('corporateProfileEn');
 Route::view('/', 'webview.maintenance');
 
     // Search features public
