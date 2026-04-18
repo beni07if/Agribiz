@@ -136,7 +136,7 @@
                 <h3>Contact Information</h3>
 
                 <p>Email :
-                    <a href="mailto:info@agribiz.earth">helpdesk@inovasidigital.asia</a>
+                    <a href="mailto:beni@inovasidigital.asia">beni@inovasidigital.asia</a>
                 </p>
 
             </div>
